@@ -166,7 +166,7 @@ impl<L2: Layer2Cache> WalletCache<L2> {
             let output = tx.outputs.get(outpoint.vout_usize()).expect("cache data inconsistency");
 
             // 检查交易是否为coinbase交易
-            if tx.inputs.iter().any(|input| input.is_coinbase()) {
+            if tx.inputs.iter().any(|input| input.coinbase == true) {
                 None
             } else {
                 Some(CoinRow {
